@@ -9,7 +9,7 @@ class MG1:
 
     ro = 0.0
     lq = 0.0
-    ro0 = 0.0
+    p0 = 0.0
     l = 0.0
     wq = 0.0
 
@@ -24,7 +24,7 @@ class MG1:
             "Ro": self.Ro(),
             "Lq": self.Lq(),
             "L": self.L(),
-            "Ro0": self.Ro0(),
+            "P0": self.P0(),
             "Wq": self.Wq(),
             "W": self.W()
         }
@@ -40,9 +40,9 @@ class MG1:
         self.lq = answer
         return answer
 
-    def Ro0(self):
-        answer = 1 - self.ro0
-        self.ro0 = answer
+    def P0(self):
+        answer = 1 - self.p0
+        self.p0 = answer
         return answer
 
     def L(self):
