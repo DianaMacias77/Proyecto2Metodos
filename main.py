@@ -187,8 +187,102 @@ while (not ending):
             if (answer != "s"):
                 local_ending = True
     
+    elif choice == 3:
+        local_ending = False
+        print(bcolors.OKBLUE + "M/M/S/K" + bcolors.ENDC)
+        while(not local_ending):
+            print("")
 
-    elif (choice == 4):
+            avg = input("Introduce la tasa media de llegadas: ")
+            try:
+                avg = float(avg)
+            except:
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            if (avg <= 0 or not avg.is_integer()):
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+
+
+            miu = input("Introduce el tasa media de servicio: ")
+            try:
+                miu = float(miu)
+            except:
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            if (miu <= 0 or not miu.is_integer()):
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+
+            s = input("Introduce el número de servidores: ")
+            try:
+                s = int(s)
+            except:
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            if (s < 0):
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            
+            k = input("Introduce K: ")
+            try:
+                k = int(k)
+            except:
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            if (k <= 0):
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+
+            n = input("Introduce el número de clientes a analizar: ")
+            try:
+                n = int(n)
+            except:
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+            if (n <= 0):
+                print(bcolors.FAIL + "Error: Debe introducir un número entero positivo" + bcolors.ENDC)
+                continue
+
+            if (avg >= (s * miu)):
+                print(bcolors.FAIL + "Error: El sistema no es estable. El promedio de llegadas = " + str(avg) + " debe ser menor que la tasa de servicio = " + str(miu) + "." + bcolors.ENDC)
+                continue
+
+            mmsk = M_M_S_K(avg, miu, s, k, n)
+
+            if (mmsk.rho < 0 or mmsk.rho > 1):
+                print(bcolors.FAIL + "Error: El sistema no es estable. Rho = " + str(mmsk.rho) + " debe estar entre 0 y 1"  + bcolors.ENDC)
+                continue
+            else:
+                print(bcolors.OKGREEN + "Los Valores introducidos son correctos." + bcolors.ENDC)
+
+            print("")
+
+
+            print("Probabilidad de que haya " + str(mmsk.n) + " clientes en el sistema. (Pn): " + str(mmsk.pn))
+            print("")
+            print("Número esperado de clientes en la cola (excluye los que están en servicio). (Lq): " + str(mmsk.lq))
+            print("")
+            print("Número esperado de clientes en el sistema. (L): " + str(mmsk.l))
+            print("")
+            print("Tiempo esperado de los clientes en la cola (excluye el tiempo de servicio). (Wq): " + str(mmsk.wq))
+            print("")
+            print("Tiempo esperado de estancia de los clientes en el sistema (incluye el tiempo de servicio). (W): " + str(mmsk.w))
+
+            print("")
+            print("Valores adicionales de calculo:")
+            print("Ro: " + str(mmsk.rho))
+            print("P0: " + str(mmsk.p0))
+            print("lambdaE: " + str(mmsk.le))
+            print("Pk: " + str(mmsk.pk))
+
+            print("")
+            print(bcolors.OKBLUE + "¿Desea realizar otra simulación? (s/n)" + bcolors.ENDC)
+            answer = input("")
+            if (answer != "s"):
+                local_ending = True
+
+    elif choice == 4:
         local_ending = False
         print(bcolors.OKBLUE + "M/G/1" + bcolors.ENDC)
         while(not local_ending):
