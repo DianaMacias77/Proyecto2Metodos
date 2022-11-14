@@ -13,10 +13,10 @@ class M_D_1:
     
     p0 = 0.0
     pn = 0.0
-    Lq = 0.0
-    L = 0.0
-    Wq = 0.0
-    W = 0.0
+    lq = 0.0
+    l = 0.0
+    wq = 0.0
+    w = 0.0
 
     def __init__(self, avg, miu, n):
         self.avg = avg
@@ -26,9 +26,9 @@ class M_D_1:
         self.rho = self.Ro()
         self.p0 = self.P0()
         self.pn = self.Pn()
+        self.lq = self.Lq()
         self.wq = self.Wq()
         self.w = self.W()
-        self.lq = self.Lq()
         self.l = self.L()
 
     def Ro(self):
@@ -52,9 +52,9 @@ class M_D_1:
         return answer
 
     def Wq(self):
-        answer = pow(self.rho, 2) / ((2 * self.avg, 2) / (1 - self.rho)) 
+        answer = self.lq / self.avg
         return answer
 
     def W(self):
-        answer = self.wq + (1/self.miu)
+        answer = self.wq + (1 / self.miu)
         return answer
