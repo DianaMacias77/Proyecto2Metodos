@@ -27,9 +27,9 @@ class M_Ek_1:
         self.rho = self.Ro()
         self.p0 = self.P0()
         self.pn = self.Pn()
+        self.lq = self.Lq()
         self.wq = self.Wq()
         self.w = self.W()
-        self.lq = self.Lq()
         self.l = self.L()
         
 
@@ -38,11 +38,13 @@ class M_Ek_1:
         return answer
 
     def Lq(self):
-        answer = ((1 + self.k) / (2 * self.k)) * (pow(self.avg, 2) / (self.miu * (self.miu - self.avg)))
+        side1 = (1 + self.k) / (2 * self.k)
+        side2 = (pow(self.avg, 2) / (self.miu * (self.miu - self.avg)))
+        answer = side1 * side2
         return answer
 
     def P0(self):
-        result = 1 - self.p0
+        result = 1 - self.rho
         return result
     
     def Pn(self):
