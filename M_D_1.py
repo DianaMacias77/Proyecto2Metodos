@@ -2,15 +2,15 @@ from math import factorial
 from math import pow
 
 
-class M_M_S:
+class M_D_1:
 
     l = 0.0
     miu = 0.0
     s = 0
     n = 0
 
-
     rho = 0.0
+    
     p0 = 0.0
     pn = 0.0
     Lq = 0.0
@@ -22,17 +22,17 @@ class M_M_S:
         self.avg = avg
         self.miu = miu
         self.n = n
+        self.s = 1
         self.rho = self.Ro()
         self.p0 = self.P0()
         self.pn = self.Pn()
-        self.lq = self.Lq()
-        self.l = self.L()
         self.wq = self.Wq()
         self.w = self.W()
-        #self.cn = self.Cn()
+        self.lq = self.Lq()
+        self.l = self.L()
 
     def Ro(self):
-        answer = self.l / (self.s * self.miu)
+        answer = self.avg / (self.s * self.miu)
         return answer
 
     def Lq(self):
@@ -58,7 +58,3 @@ class M_M_S:
     def W(self):
         answer = self.wq + (1/self.miu)
         return answer
-
-    def Cn(self):
-        result = (pow(self.l/self.miu,self.n))
-        return result

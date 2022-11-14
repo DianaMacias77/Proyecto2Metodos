@@ -9,8 +9,8 @@ class M_M_S:
     s = 0
     n = 0
 
-
     rho = 0.0
+    
     p0 = 0.0
     pn = 0.0
     Lq = 0.0
@@ -18,9 +18,10 @@ class M_M_S:
     Wq = 0.0
     W = 0.0
 
-    def __init__(self, avg, miu, n):
+    def __init__(self, avg, miu, s, n):
         self.avg = avg
         self.miu = miu
+        self.s = s
         self.n = n
         self.rho = self.Ro()
         self.p0 = self.P0()
@@ -29,10 +30,9 @@ class M_M_S:
         self.l = self.L()
         self.wq = self.Wq()
         self.w = self.W()
-        self.cn = self.Cn()
 
     def Ro(self):
-        answer = self.l / (self.s * self.miu)
+        answer = self.avg / (self.s * self.miu)
         return answer
 
     def Lq(self):
@@ -40,6 +40,7 @@ class M_M_S:
         return answer
 
     def P0(self):
+        result = 0.0
         for i in range(self.s):
             result += pow((self.avg / self.miu),i) / factorial(i)
         p0 = result + (pow((self.avg / self.miu), self.s) / factorial(self.s)) * (1 / (1 - (self.avg / (self.s * self.miu))))
@@ -56,7 +57,7 @@ class M_M_S:
         return result
 
     def L(self):
-        answer = self.avg / (self.miu - self.avg)
+        answer = self.lq + (self.avg / self.miu)
         return answer
 
     def Wq(self):
@@ -64,9 +65,5 @@ class M_M_S:
         return answer
 
     def W(self):
-        answer = self.l / self.avg
+        answer = self.wq + (1 / self.miu)
         return answer
-
-    def Cn(self):
-        result = (pow(self.l/self.miu,self.n))
-        return result
